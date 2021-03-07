@@ -2,7 +2,7 @@ package main
 
 import (
 	"context"
-	pb "github.com/dilipmighty/grpc-testing-with-bufconn/proto/greeter"
+	pb "github.com/dilipmighty/testing-grpc-with-bufconn/proto/greeter"
 	"golang.org/x/sync/errgroup"
 	"log"
 	"net"
