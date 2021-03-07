@@ -7,7 +7,7 @@ To solve this gRPC community has introduced a package called bufconn under gRPCâ
 As bufconn already comes with the grpc go module - which we already have installed, we don't need to install it explicitly.
 
 ## How to test
-#### prerequisites:
+#### Prerequisites:
 ```
 Go : https://golang.org/doc/install
 Git: https://git-scm.com/book/en/v2/Getting-Started-Installing-Git
