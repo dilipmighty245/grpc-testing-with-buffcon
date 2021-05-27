@@ -22,12 +22,14 @@ var (
 	ctx    context.Context
 )
 
-func init() {
+func startServer(t *testing.T) {
+	t.Helper()
 	ctx, cancel = context.WithCancel(context.Background())
 	lis = bufconn.Listen(bufSize)
 	wg.Add(1)
 	go func() {
 		defer wg.Done()
+		defer lis.Close()
 		run(ctx, lis)
 	}()
 }
@@ -37,15 +39,15 @@ func bufDialer(ctx context.Context, address string) (net.Conn, error) {
 }
 
 func TestSayHello(t *testing.T) {
-	ctx := context.Background()
-	conn, err := grpc.DialContext(ctx, "bufnet", grpc.WithContextDialer(bufDialer), grpc.WithInsecure())
+	startServer(t)
+	conn, err := grpc.DialContext(ctx, "bufnet", grpc.WithContextDialer(bufDialer), grpc.WithInsecure(), grpc.WithBlock())
 	if err != nil {
 		t.Fatal(err)
 	}
 	defer conn.Close()
 
 	client := pb.NewGreeterClient(conn)
-	resp, err := client.SayHello(ctx, &pb.HelloRequest{Name: "gRPC"})
+	resp, err := client.SayHello(context.Background(), &pb.HelloRequest{Name: "gRPC"})
 	if err != nil {
 		t.Fatal(err)
 	}

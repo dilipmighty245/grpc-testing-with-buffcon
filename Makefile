@@ -9,10 +9,19 @@ endif
 
 
 
-.PHONY: test
-test:
+.PHONY: unit-test
+unit-test:
 	set -o pipefail && go test -v -tags=unit -p=1 -count=1 -race -vet=off ./...
+
+.PHONY: integration-test
+integration-test:
+	set -o pipefail && go test -v -tags=integration -p=1 -count=1 -race -vet=off ./...
 
 .PHONY: gen-proto
 gen-proto:
 	protoc ./proto/greeter/greeter.proto --go_out=plugins=grpc:.
+
+.PHONY: gen-mocks
+gen-mocks:
+	${GOBIN}/mockgen -source=./proto/greeter/greeter.pb.go -destination=mocks/server_mock.go -package=mocks
+
