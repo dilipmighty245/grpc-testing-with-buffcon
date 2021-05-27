@@ -10,7 +10,7 @@ import (
 	"google.golang.org/grpc"
 )
 
-type server struct{
+type server struct {
 	pb.UnimplementedGreeterServer
 }
 

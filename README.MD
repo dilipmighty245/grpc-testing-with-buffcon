@@ -24,7 +24,7 @@ make gen-proto
 ```
 #### Test server
 ```
-make test
+$ make unit-test
 
 set -o pipefail && go test -v -tags=unit -p=1 -count=1 -race -vet=off ./...
 ?   	github.com/dilipmighty/testing-grpc-with-bufconn/proto/greeter	[no test files]
@@ -35,5 +35,22 @@ PASS
 ok  	github.com/dilipmighty/testing-grpc-with-bufconn/server	0.510s
 ```
 
+```
 
+$ make integration-test
+
+set -o pipefail && go test -v -tags=integration -p=1 -count=1 -race -vet=off ./...
+Running Suite: Server BBD Test Suite
+====================================
+Random Seed: 1622099839
+Will run 1 of 1 specs
+
+2021/05/27 12:47:19 Received: gRPC
+•2021/05/27 12:47:19 context is cancelled, proceeding for graceful shutdown
+
+Ran 1 of 1 Specs in 0.007 seconds
+SUCCESS! -- 1 Passed | 0 Failed | 0 Pending | 0 Skipped
+--- PASS: TestClient (0.01s)
+PASS
+ok  	github.com/dilipmighty/testing-grpc-with-bufconn/server	0.440s
 

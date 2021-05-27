@@ -9,9 +9,13 @@ endif
 
 
 
-.PHONY: test
-test:
+.PHONY: unit-test
+unit-test:
 	set -o pipefail && go test -v -tags=unit -p=1 -count=1 -race -vet=off ./...
+
+.PHONY: integration-test
+integration-test:
+	set -o pipefail && go test -v -tags=integration -p=1 -count=1 -race -vet=off ./...
 
 .PHONY: gen-proto
 gen-proto:
