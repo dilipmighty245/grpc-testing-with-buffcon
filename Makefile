@@ -16,3 +16,8 @@ test:
 .PHONY: gen-proto
 gen-proto:
 	protoc ./proto/greeter/greeter.proto --go_out=plugins=grpc:.
+
+.PHONY: gen-mocks
+gen-mocks:
+	${GOBIN}/mockgen -source=./proto/greeter/greeter.pb.go -destination=mocks/server_mock.go -package=mocks
+

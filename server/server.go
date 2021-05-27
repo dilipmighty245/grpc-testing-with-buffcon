@@ -10,7 +10,9 @@ import (
 	"google.golang.org/grpc"
 )
 
-type server struct{}
+type server struct{
+	pb.UnimplementedGreeterServer
+}
 
 func (s *server) SayHello(ctx context.Context, in *pb.HelloRequest) (*pb.HelloReply, error) {
 	log.Printf("Received: %v", in.Name)
@@ -25,6 +27,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 
+	log.Printf("starting server at:%q", addr)
 	err = run(ctx, lis)
 
 	switch err {
@@ -37,6 +40,7 @@ func main() {
 
 // run will start the server
 func run(ctx context.Context, lis net.Listener) error {
+
 	s := grpc.NewServer()
 	pb.RegisterGreeterServer(s, &server{})
 	errGrp, egCtx := errgroup.WithContext(ctx)
