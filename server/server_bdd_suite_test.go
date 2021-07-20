@@ -24,7 +24,7 @@ var testingT *testing.T
 func TestServer(t *testing.T) {
 	testingT = t
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Client BBD Test Suite")
+	RunSpecs(t, "Server BBD Test Suite")
 }
 
 var (
