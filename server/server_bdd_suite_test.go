@@ -5,8 +5,8 @@ package main
 import (
 	"context"
 	"fmt"
-	"github.com/dilipmighty/testing-grpc-with-bufconn/mocks"
-	pb "github.com/dilipmighty/testing-grpc-with-bufconn/proto/greeter"
+	"github.com/dilipmighty/testing-grpc/mocks"
+	pb "github.com/dilipmighty/testing-grpc/proto/greeter"
 	"github.com/golang/mock/gomock"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"

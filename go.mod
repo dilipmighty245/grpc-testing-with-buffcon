@@ -1,4 +1,4 @@
-module github.com/dilipmighty/testing-grpc-with-bufconn
+module github.com/dilipmighty/testing-grpc
 
 go 1.15
 
